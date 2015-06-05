@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
 
+  def to_s
+    name
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
