@@ -19,8 +19,9 @@
         %td= book.code
         %td= book.user
         %td= link_to 'Show', book
-        - if current_user.admin?
+        - if policy(book).edit?
           %td= link_to 'Edit', edit_book_path(book)
+        - if policy(book).destroy?
           %td= link_to 'Destroy', book, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
