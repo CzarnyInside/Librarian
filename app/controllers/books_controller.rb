@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :borrow]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :borrow, :return_book]
 
   def borrow
     authorize @book
