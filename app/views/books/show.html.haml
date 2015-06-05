@@ -12,10 +12,12 @@
 %p
   %b User:
   = @book.user
-%p
-  = link_to 'Borrow', borrow_book_path(@book)
-%p
-  = link_to 'Return book', return_book_book_path(@book)
+- if policy(@book).borrow?
+  %p
+    = link_to 'Borrow', borrow_book_path(@book)
+- if policy(@book).return_book?
+  %p
+    = link_to 'Return book', return_book_book_path(@book)
 
 = link_to 'Edit', edit_book_path(@book)
 \|
