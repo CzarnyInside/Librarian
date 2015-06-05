@@ -2,13 +2,17 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :borrow]
 
   def borrow
-    if @book.borrowed?
-      redirect_to book_path(@book), alert: 'Already borrowed'
-    else
-      @book.user = current_user
-      @book.save
-      redirect_to book_path(@book), notice: 'Book borrowed'
-    end
+    authorize @book
+    @book.user = current_user
+    @book.save
+    redirect_to book_path(@book), notice: 'Book borrowed'
+  end
+
+  def return_book
+    authorize @book
+    @book.user = nil
+    @book.save
+    redirect_to books_path, notice: 'Book returned'
   end
 
   # GET /books

@@ -14,6 +14,8 @@
   = @book.user
 %p
   = link_to 'Borrow', borrow_book_path(@book)
+%p
+  = link_to 'Return book', return_book_book_path(@book)
 
 = link_to 'Edit', edit_book_path(@book)
 \|

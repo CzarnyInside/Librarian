@@ -1,5 +1,13 @@
 class BookPolicy < ApplicationPolicy
 
+  def borrow?
+    !record.borrowed?
+  end
+
+  def return_book?
+    !borrow?
+  end
+
   def edit?
     user.admin?
   end
