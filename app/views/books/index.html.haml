@@ -19,8 +19,9 @@
         %td= book.code
         %td= book.user
         %td= link_to 'Show', book
-        %td= link_to 'Edit', edit_book_path(book)
-        %td= link_to 'Destroy', book, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - if current_user.admin?
+          %td= link_to 'Edit', edit_book_path(book)
+          %td= link_to 'Destroy', book, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
