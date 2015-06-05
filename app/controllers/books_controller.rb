@@ -1,5 +1,15 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :borrow]
+
+  def borrow
+    if @book.borrowed?
+      redirect_to book_path(@book), alert: 'Already borrowed'
+    else
+      @book.user = current_user
+      @book.save
+      redirect_to book_path(@book), notice: 'Book borrowed'
+    end
+  end
 
   # GET /books
   # GET /books.json
